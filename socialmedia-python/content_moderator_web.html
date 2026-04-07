@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content Moderator Web App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: url('download.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            padding: 32px 28px 24px 28px;
+        }
+        h2 {
+            text-align: center;
+            color: #2575fc;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        textarea, input {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #d1d9e6;
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            background: #f7faff;
+            transition: border 0.2s;
+        }
+        textarea:focus, input:focus {
+            border: 1.5px solid #2575fc;
+            outline: none;
+        }
+        button {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(37,117,252,0.08);
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+        }
+        .output {
+            background: #f7faff;
+            padding: 14px 16px;
+            margin-top: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(37,117,252,0.04);
+            font-size: 1rem;
+        }
+        .section {
+            margin-bottom: 18px;
+        }
+        label {
+            font-weight: 500;
+            color: #333;
+        }
+        b {
+            color: #2575fc;
+        }
+        @media (max-width: 700px) {
+            .container {
+                max-width: 98vw;
+                padding: 16px 4vw 16px 4vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Content Moderator Web App</h2>
+        <div class="section">
+            <label for="posts">Enter posts (one per line):</label><br>
+            <textarea id="posts" placeholder="e.g. User123: This is a bad post. Visit http://example.com"></textarea>
+        </div>
+        <div class="section">
+            <label for="banned">Banned words (comma separated):</label><br>
+            <input id="banned" value="bad,toxic,hate" placeholder="e.g. bad,toxic,hate" />
+        </div>
+        <button onclick="moderate()">Moderate Content</button>
+        <div class="section output" id="report"></div>
+        <div class="section output" id="cleaned"></div>
+        <div class="section output" id="blocked"></div>
+        <div class="section output" id="links"></div>
+        <div class="section output" id="flags"></div>
+    </div>
+    <script>
+        function maskBannedWords(post, bannedWords) {
+            bannedWords.forEach(word => {
+                const re = new RegExp(word, 'gi');
+                post = post.replace(re, '***');
+            });
+            return post;
+        }
+        function extractLinks(post) {
+            return post.split(/\s+/).filter(w => w.startsWith('http'));
+        }
+        function moderate() {
+            const posts = document.getElementById('posts').value.split('\n').filter(Boolean);
+            const bannedWords = document.getElementById('banned').value.split(',').map(w => w.trim()).filter(Boolean);
+            let cleaned = [], blocked = [], links = [], userFlags = {};
+            posts.forEach(post => {
+                let masked = maskBannedWords(post, bannedWords);
+                let hasBanned = bannedWords.some(word => post.toLowerCase().includes(word.toLowerCase()));
+                if (hasBanned) blocked.push(masked); else cleaned.push(masked);
+                links.push(...extractLinks(post));
+                // User flag tracking
+                let user = post.split(':')[0].trim();
+                if (user) {
+                    if (!(user in userFlags)) userFlags[user] = 0;
+                    if (post.includes('Moderator')) userFlags[user] += 1;
+                }
+            });
+            document.getElementById('report').innerText = `Total Posts Screened: ${posts.length} | Cleaned: ${cleaned.length} | Blocked: ${blocked.length}`;
+            document.getElementById('cleaned').innerHTML = '<b>Cleaned Posts:</b><br>' + (cleaned.length ? cleaned.join('<br>') : 'None');
+            document.getElementById('blocked').innerHTML = '<b>Blocked Posts:</b><br>' + (blocked.length ? blocked.join('<br>') : 'None');
+            document.getElementById('links').innerHTML = '<b>Extracted Links:</b><br>' + (links.length ? links.join('<br>') : 'None');
+            document.getElementById('flags').innerHTML = '<b>User Flags:</b><br>' + JSON.stringify(userFlags);
+        }
+    </script>
+</body>
+</html>
