@@ -24,10 +24,10 @@ Step 1: Create Tables
 - Books
 - Students
 - IssuedBooks
-- 
+  
 Step 2: Insert Sample Data
 - Populate tables with sample records.
-- 
+  
 Step 3: Overdue Query
   Find students who:
     - Have not returned books
@@ -98,7 +98,7 @@ A school social platform needs to filter harmful content and extract links.
 - Save links to file
 - Track user moderation stats
 - Generate report
-- 
+  
 🛠️ ** Implementation Steps **
 Step 1: Define Sample Posts
 posts = ["This is bad", "Visit http://example.com"]
