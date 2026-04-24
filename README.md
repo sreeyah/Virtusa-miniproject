@@ -7,7 +7,7 @@ This repository contains three mini projects designed to solve real-world proble
 2️⃣ Java – SmartPay Utility Biller
 3️⃣ Python – Social Media Content Sanitizer
 
-🧩                                           ** 1. SQL: Digital Library Audit **
+                                          🧩 ** 1. SQL: Digital Library Audit **
 
 📖 ** Business Case **
 A community college wants to manage book borrowing efficiently. The system tracks overdue books, student activity, and popular categories.
@@ -87,7 +87,7 @@ Screenshots:
 <img width="2239" height="1206" alt="Screenshot 2026-04-24 092421" src="https://github.com/user-attachments/assets/e8360786-c186-4885-84a2-0e0a7aa950b6" />
 
 
-🐍                                          ** 3. Python: Social Media Content Sanitizer **
+                                               🐍** 3. Python: Social Media Content Sanitizer **
 
 📖 ** Business Case **
 A school social platform needs to filter harmful content and extract links.
