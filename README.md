@@ -47,7 +47,7 @@ WHERE StudentID NOT IN (
 )
 AND JoinDate < '2021-03-20';
 
-💡                                                           ** 2. Java: SmartPay Utility Biller **
+                                             💡 ** 2. Java: SmartPay Utility Biller **
 
 📖 ** Business Case **
 A municipality wants to automate electricity/water billing with slab-based pricing.
