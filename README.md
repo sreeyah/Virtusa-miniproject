@@ -7,7 +7,7 @@ This repository contains three mini projects designed to solve real-world proble
 2️⃣ Java – SmartPay Utility Biller
 3️⃣ Python – Social Media Content Sanitizer
 
-🧩 ** 1. SQL: Digital Library Audit **
+🧩                                           ** 1. SQL: Digital Library Audit **
 
 📖 ** Business Case **
 A community college wants to manage book borrowing efficiently. The system tracks overdue books, student activity, and popular categories.
@@ -47,7 +47,7 @@ WHERE StudentID NOT IN (
 )
 AND JoinDate < '2021-03-20';
 
-💡 ** 2. Java: SmartPay Utility Biller **
+💡                                                           ** 2. Java: SmartPay Utility Biller **
 
 📖 ** Business Case **
 A municipality wants to automate electricity/water billing with slab-based pricing.
@@ -83,7 +83,11 @@ Units Consumed
 Tax Amount
 Final Bill
 
-🐍 ** 3. Python: Social Media Content Sanitizer **
+Screenshots:
+<img width="2239" height="1206" alt="Screenshot 2026-04-24 092421" src="https://github.com/user-attachments/assets/e8360786-c186-4885-84a2-0e0a7aa950b6" />
+
+
+🐍                                          ** 3. Python: Social Media Content Sanitizer **
 
 📖 ** Business Case **
 A school social platform needs to filter harmful content and extract links.
@@ -123,5 +127,10 @@ Step 6: User Report
 - Python String Processing & File Handling
 - Problem Solving & Real-world Logic
 
+Screenshot:
+<img width="2191" height="1209" alt="Screenshot 2026-04-24 092459" src="https://github.com/user-attachments/assets/73bacf65-bb26-445c-b99a-4e7e52bd7e2c" />
+
+
 🙌 ** Conclusion **
-This project demonstrates how real-world problems can be solved using different technologies. It highlights practical implementation, clean structure, and scalable solutions across SQL, Java, and Python.
+This project demonstrates how real-world problems can be solved using different technologies. It highlights practical implementation, clean structure, and scalable solutions across SQL, Java, and
+Python.
